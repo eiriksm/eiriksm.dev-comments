@@ -23,9 +23,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Workflow Webhook Action
-      uses: distributhor/workflow-webhook@v1.0.2
-      env:
+      uses: zzzze/webhook-trigger@master
+      with:
         webhook_url: ${{ secrets.WEBHOOK_URL }}
         webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
-        webhook_auth: ${{ secrets.WEBHOOK_AUTH }}
-        data: '{"event_type":"i_did_something"}'
+        user: ${{ secrets.WEBHOOK_AUTH }}
+        data: "{\"event_type\":\"i_did_something\"}"
