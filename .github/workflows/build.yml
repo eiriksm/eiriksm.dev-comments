@@ -9,5 +9,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Workflow trigger
+      env:
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        AUTH: ${{ secrets.WEBHOOK_AUTH }}
       run:
-        gh workflow run --repo eiriksm/eiriksm.dev deploy.yml
+        curl -X POST $WEBHOOK_URL --user $AUTH --data "{\"event_type\":\"i_did_something\"}"
